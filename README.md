@@ -52,3 +52,9 @@ Browser → Kubernetes Service → Pod → Docker Container → Node.js Applicat
 docker build -t kaushal13x/devops-dashboard:v1 .
 docker login
 docker push kaushal13x/devops-dashboard:v1
+##  kubernetes Commands
+minikube start
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+kubectl get pods
+kubectl get svc
