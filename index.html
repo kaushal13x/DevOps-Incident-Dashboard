@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DevOps Incident Dashboard</title>
+  <style>
+    body {
+      background-color: #0f172a;
+      font-family: Arial;
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      margin: 20px auto;
+      width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: #38bdf8;
+      color: black;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🚀 DevOps Incident Dashboard</h1>
+
+<div class="card">
+  <h3>Service Health</h3>
+  <button onclick="checkHealth()">Check Health</button>
+  <p id="health"></p>
+</div>
+
+<div class="card">
+  <h3>App Version</h3>
+  <button onclick="checkVersion()">Check Version</button>
+  <p id="version"></p>
+</div>
+
+<div class="card">
+  <h3>Uptime</h3>
+  <button onclick="checkUptime()">Check Uptime</button>
+  <p id="uptime"></p>
+</div>
+
+<script>
+function checkHealth() {
+  fetch('/health')
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("health").innerText = 
+        "Status: " + data.status;
+    });
+}
+
+function checkVersion() {
+  fetch('/version')
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("version").innerText =
+        data.app + " - " + data.version + " (" + data.environment + ")";
+    });
+}
+
+function checkUptime() {
+  fetch('/uptime')
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("uptime").innerText =
+        "Uptime: " + data.uptime_seconds + " seconds";
+    });
+}
+</script>
+
+</body>
+</html>
